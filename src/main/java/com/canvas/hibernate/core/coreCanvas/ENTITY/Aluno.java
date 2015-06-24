@@ -12,59 +12,87 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="avaliador_externo")
-public class AvaliadorExterno {
+@Table(name="aluno")
+public class Aluno {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDAVALIADOR_EXTERNO", nullable=false)
-	private int idAvaliadorExterno;
+	@Column(name="ID_ALUNO", nullable=false)
+	private int idAluno;
 	
 	@Column(name="NOME", nullable=false, length=200)
 	private String nome;
 	
-	@Column(name="AREAATUACAO", nullable=false, length=100)
-	private String areaAtuacao;
+	@Column(name="CURSO", nullable=false, length=100)
+	private String curso;
 	
-	@Column(name="FORMACAO", nullable=false, length=50)
-	private String formacao;
+	@Column(name="PERIODO", nullable=false)
+	private int periodo;
+	
+	@Column(name="CAMPUS", nullable=false, length=100)
+	private String campus;
+	
+	@Column(name="PERIODO", nullable=false)
+	private int liderProjeto;
 	
 	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
 	// @JoinColumn(name="ID_USUARIO", nullable=false)
 	@PrimaryKeyJoinColumn
 	private Usuario usuario;
 	
-	
-	public int getIdAvaliadorExterno() {
-		return idAvaliadorExterno;
+	public int getIdAluno() {
+		return idAluno;
 	}
-	
-	public void setIdAvaliadorExterno(int idAvaliadorExterno) {
-		this.idAvaliadorExterno = idAvaliadorExterno;
+
+	public void setIdAluno(int idAluno) {
+		this.idAluno = idAluno;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getAreaAtuacao() {
-		return areaAtuacao;
+
+	public String getCurso() {
+		return curso;
 	}
-	public void setAreaAtuacao(String areaAtuacao) {
-		this.areaAtuacao = areaAtuacao;
+
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
-	public String getFormacao() {
-		return formacao;
+
+	public int getPeriodo() {
+		return periodo;
 	}
-	public void setFormacao(String formacao) {
-		this.formacao = formacao;
+
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
 	}
+
+	public String getCampus() {
+		return campus;
+	}
+
+	public void setCampus(String campus) {
+		this.campus = campus;
+	}
+
+	public int getLiderProjeto() {
+		return liderProjeto;
+	}
+
+	public void setLiderProjeto(int liderProjeto) {
+		this.liderProjeto = liderProjeto;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}	
+	}
 }
