@@ -15,7 +15,8 @@ public class UsuarioDao implements Dao<Usuario, Integer>{
 	}
 
 	public void save(Usuario entity) {
-		// TODO Auto-generated method stub
+		
+		this.entityManager.persist(entity);
 		
 	}
 

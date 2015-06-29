@@ -22,4 +22,32 @@ public class UsuarioBO {
 		
 		return null;
 	}
+	
+	public boolean cadastrarUsuario(Usuario user){
+		
+		if(user.getTipoUsuario() == null){
+			return false;
+		}
+		
+		if(user.getEmail() == null){
+			return false;
+		}
+		
+		if(user.getSenha() == null){
+			return false;
+		}
+		
+		UsuarioDao userDao = new UsuarioDao(customEntityManager.getEntityManager());
+		try{
+			customEntityManager.beginTransaction();
+			userDao.save(user);
+			customEntityManager.commit();
+			return true;
+		}catch(Exception e){
+            e.printStackTrace();
+            customEntityManager.rollBack();
+        }finally{
+        	customEntityManager.close();
+        }
+	}
 }
