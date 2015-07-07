@@ -40,12 +40,17 @@ public class UsuarioBO {
 		UsuarioDao userDao = new UsuarioDao(customEntityManager.getEntityManager());
 		try{
 			customEntityManager.beginTransaction();
-			userDao.save(user);
-			customEntityManager.commit();
-			return true;
+			if(this.buscarEmail(user.getEmail()) != null){
+				userDao.save(user);
+				customEntityManager.commit();
+				return true;
+			}else{
+				return false;
+			}
 		}catch(Exception e){
             e.printStackTrace();
             customEntityManager.rollBack();
+            return false;
         }finally{
         	customEntityManager.close();
         }
